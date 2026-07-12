@@ -1,5 +1,7 @@
 # Quick Edit
 
+![screenshot](https://raw.githubusercontent.com/NonSwag/banner-creator/refs/heads/main/screenshot.png)
+
 ## How to Use
 
 1. Download the ZIP file or clone this repository.
