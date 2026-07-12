@@ -11,6 +11,6 @@
 5. Optionally tweak some settings.
 6. Export as PNG.
 
-Use the [banner creator](https://3dtext.easecation.net/) to create banners.
+Use [3dtext.easecation.net](https://3dtext.easecation.net/) to create the banner text.
 
 This project was fully done by AI.
