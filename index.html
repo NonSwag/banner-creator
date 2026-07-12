@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Banner Composer</title>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <main class="shell">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">quick-edit</p>
+                    <h1>Banner Composer</h1>
+                </div>
+                <button
+                    id="download"
+                    class="button primary"
+                    type="button"
+                    disabled
+                >
+                    <span aria-hidden="true">↓</span>
+                    Export PNG
+                </button>
+            </header>
+
+            <section class="workspace" aria-label="Banner compositor">
+                <form class="controls">
+                    <label class="dropzone" for="backdropInput">
+                        <input
+                            id="backdropInput"
+                            type="file"
+                            accept="image/*"
+                        />
+                        <span class="drop-icon" aria-hidden="true">□</span>
+                        <span>
+                            <strong>Backdrop</strong>
+                            <small id="backdropName"
+                                >Upload or drop image</small
+                            >
+                        </span>
+                    </label>
+
+                    <label class="dropzone" for="bannerInput">
+                        <input id="bannerInput" type="file" accept="image/*" />
+                        <span class="drop-icon" aria-hidden="true">▣</span>
+                        <span>
+                            <strong>Banner</strong>
+                            <small id="bannerName"
+                                >Upload or drop transparent banner</small
+                            >
+                            <a
+                                class="field-link"
+                                href="https://3dtext.easecation.net/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                Create banner text
+                            </a>
+                        </span>
+                    </label>
+
+                    <div class="field">
+                        <label for="fadeStart">Fade start</label>
+                        <div class="range-row">
+                            <input
+                                id="fadeStart"
+                                type="range"
+                                min="0"
+                                max="100"
+                                value="25"
+                            />
+                            <output id="fadeStartValue" for="fadeStart"
+                                >25%</output
+                            >
+                            <button
+                                class="button reset-slider"
+                                type="button"
+                                data-reset-control="fadeStart"
+                                aria-label="Reset fade start"
+                            >
+                                ↺
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="fadeStrength">Fade strength</label>
+                        <div class="range-row">
+                            <input
+                                id="fadeStrength"
+                                type="range"
+                                min="0"
+                                max="100"
+                                value="80"
+                            />
+                            <output id="fadeStrengthValue" for="fadeStrength"
+                                >80%</output
+                            >
+                            <button
+                                class="button reset-slider"
+                                type="button"
+                                data-reset-control="fadeStrength"
+                                aria-label="Reset fade strength"
+                            >
+                                ↺
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="cropTop">Cut top</label>
+                        <div class="range-row">
+                            <input
+                                id="cropTop"
+                                type="range"
+                                min="0"
+                                max="200"
+                                value="200"
+                            />
+                            <output id="cropTopValue" for="cropTop"
+                                >200px</output
+                            >
+                            <button
+                                class="button reset-slider"
+                                type="button"
+                                data-reset-control="cropTop"
+                                aria-label="Reset top cut"
+                            >
+                                ↺
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="cropBottom">Cut bottom</label>
+                        <div class="range-row">
+                            <input
+                                id="cropBottom"
+                                type="range"
+                                min="0"
+                                max="0"
+                                value="0"
+                            />
+                            <output id="cropBottomValue" for="cropBottom"
+                                >0px</output
+                            >
+                            <button
+                                class="button reset-slider"
+                                type="button"
+                                data-reset-control="cropBottom"
+                                aria-label="Reset bottom cut"
+                            >
+                                ↺
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="bannerWidth">Banner width</label>
+                        <div class="range-row">
+                            <input
+                                id="bannerWidth"
+                                type="range"
+                                min="20"
+                                max="95"
+                                value="70"
+                            />
+                            <output id="bannerWidthValue" for="bannerWidth"
+                                >70%</output
+                            >
+                            <button
+                                class="button reset-slider"
+                                type="button"
+                                data-reset-control="bannerWidth"
+                                aria-label="Reset banner width"
+                            >
+                                ↺
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="bannerY">Banner vertical position</label>
+                        <div class="range-row">
+                            <input
+                                id="bannerY"
+                                type="range"
+                                min="45"
+                                max="90"
+                                value="73"
+                            />
+                            <output id="bannerYValue" for="bannerY">73%</output>
+                            <button
+                                class="button reset-slider"
+                                type="button"
+                                data-reset-control="bannerY"
+                                aria-label="Reset banner vertical position"
+                            >
+                                ↺
+                            </button>
+                        </div>
+                    </div>
+
+                    <button id="reset" class="button" type="button">
+                        <span aria-hidden="true">↺</span>
+                        Reset
+                    </button>
+                </form>
+
+                <div class="preview-wrap">
+                    <div class="preview-toolbar">
+                        <span id="canvasSize">No backdrop loaded</span>
+                        <span>PNG output</span>
+                    </div>
+                    <div class="preview-frame">
+                        <div id="cropStage" class="crop-stage">
+                            <canvas
+                                id="canvas"
+                                width="1200"
+                                height="630"
+                            ></canvas>
+                            <div
+                                class="crop-handle crop-handle-top"
+                                data-crop-handle="top"
+                                role="slider"
+                                aria-label="Cut top"
+                                aria-valuemin="0"
+                                aria-valuenow="0"
+                            ></div>
+                            <div
+                                class="crop-handle crop-handle-bottom"
+                                data-crop-handle="bottom"
+                                role="slider"
+                                aria-label="Cut bottom"
+                                aria-valuemin="0"
+                                aria-valuenow="0"
+                            ></div>
+                            <div id="emptyState" class="empty-state">
+                                Upload a backdrop and banner to compose the
+                                image.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script defer src="./app.js"></script>
+    </body>
+</html>
